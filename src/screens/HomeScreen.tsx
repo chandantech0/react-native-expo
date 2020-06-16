@@ -11,6 +11,8 @@ type Props = {
 };
 
 const HomeScreen = ({ navigation }: Props) => (
+
+  
   <Background>
     <Logo />
     <Header>Firebase Login</Header>

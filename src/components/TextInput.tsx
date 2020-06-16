@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   input: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: 'transparent',
   },
   error: {
     fontSize: 14,

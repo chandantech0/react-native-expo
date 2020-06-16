@@ -2,7 +2,8 @@ import React, { memo } from "react";
 import {
   ImageBackground,
   StyleSheet,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 
 type Props = {
@@ -16,7 +17,9 @@ const Background = ({ children }: Props) => (
     style={styles.background}
   >
     <KeyboardAvoidingView style={styles.container} behavior="padding">
+     
       {children}
+     
     </KeyboardAvoidingView>
   </ImageBackground>
 );
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     width: "100%",
-    maxWidth: 340,
+    maxWidth: 420,
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center"

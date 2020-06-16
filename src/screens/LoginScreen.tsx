@@ -16,6 +16,7 @@ type Props = {
   navigation: Navigation;
 };
 
+
 const LoginScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
@@ -47,6 +48,8 @@ const LoginScreen = ({ navigation }: Props) => {
 
     setLoading(false);
   };
+
+  
 
   return (
     <Background>
