@@ -6,6 +6,13 @@ export const logoutUser = () => {
   firebase.auth().signOut();
 };
 
+
+var provider = new firebase.auth.FacebookAuthProvider();
+var providerGoogle = new firebase.auth.GoogleAuthProvider();
+var providerTwitter = new firebase.auth.TwitterAuthProvider();
+provider.setCustomParameters({
+  'display': 'popup'
+});
 export const signInUser = async ({ name, email, password }: AuthDetails) => {
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -66,6 +73,72 @@ export const loginUser = async ({ email, password }: AuthDetails) => {
     }
   }
 };
+
+// facebook login
+export const loginUserfacebook = async () => {
+    await firebase.auth().signInWithPopup(provider).then(function(result:any) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+      return {};
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    })
+};
+
+// gmail login
+export const loginUsergoogle = async () => {
+  await firebase.auth().signInWithPopup(providerGoogle).then(function(result:any) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+    return {};
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  })
+};
+
+
+// twitter login
+export const loginUsertwitter = async () => {
+  await firebase.auth().signInWithPopup(providerTwitter).then(function(result:any) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+    return {};
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  })
+};
+
+
 
 export const sendEmailWithPassword = async (email: string) => {
   try {

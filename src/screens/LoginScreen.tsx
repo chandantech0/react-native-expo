@@ -9,12 +9,14 @@ import BackButton from "../components/BackButton";
 import { theme } from "../core/theme";
 import { emailValidator, passwordValidator } from "../core/utils";
 import { Navigation } from "../types";
-import { loginUser } from "../api/auth-api";
+import { loginUser,loginUserfacebook,loginUsergoogle, loginUsertwitter } from "../api/auth-api";
 import Toast from "../components/Toast";
+
 
 type Props = {
   navigation: Navigation;
 };
+
 
 
 const LoginScreen = ({ navigation }: Props) => {
@@ -49,6 +51,47 @@ const LoginScreen = ({ navigation }: Props) => {
     setLoading(false);
   };
 
+
+  const _onFacebokLoginPressed = async () => {
+  
+
+    setLoading(true);
+
+    let response:any = await loginUserfacebook();
+
+    if (response) {
+      setError(response);
+    }
+
+    setLoading(false);
+  };
+
+  const _onGoogleLoginPressed = async () => {
+  
+    setLoading(true);
+
+    let response:any = await loginUsergoogle();
+
+    if (response) {
+      setError(response);
+    }
+
+    setLoading(false);
+  };
+  
+
+  const _onTwitterLoginPressed = async () => {
+  
+    setLoading(true);
+
+    let response:any = await loginUsertwitter();
+
+    if (response) {
+      setError(response);
+    }
+
+    setLoading(false);
+  };
   
 
   return (
@@ -94,6 +137,21 @@ const LoginScreen = ({ navigation }: Props) => {
       <Button loading={loading} mode="contained" onPress={_onLoginPressed}>
         Login
       </Button>
+
+      <Button  onPress={_onFacebokLoginPressed}>
+        Facebook Login
+      </Button>
+
+      <Button  onPress={_onGoogleLoginPressed}>
+        Google Login
+      </Button>
+
+      <Button  onPress={_onTwitterLoginPressed}>
+        Twitter Login
+      </Button>
+      
+      
+      
 
       <View style={styles.row}>
         <Text style={styles.label}>Don’t have an account? </Text>
