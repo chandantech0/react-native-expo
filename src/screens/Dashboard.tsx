@@ -1,10 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import Background from "../components/Background";
 import Paragraph from "../components/Paragraph";
 import Button from "../components/Button";
 import { Navigation } from "../types";
 import { logoutUser } from "../api/auth-api";
-import { StyleSheet, View, Text,  } from "react-native";
+import { StyleSheet, View, Text, Switch  } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createDrawerNavigator,
@@ -20,6 +20,8 @@ import {
 } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { Card } from 'react-native-elements';
+import CampaignDetail from "./CampaignDetail";
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
@@ -28,7 +30,6 @@ const screenWidth = Dimensions.get("window").width;
 type Props = {
   navigation: Navigation;
 };
-
 
 
 const Dashboard = ({ navigation }: Props) => {
@@ -126,21 +127,54 @@ const Dashboard = ({ navigation }: Props) => {
       </Background>
     );
   }
-  
-  const Subscription = ({ navigation }) => {
+
+  const Campaigns = ({ navigation }) => {
+    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled2, setIsEnabled2] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
     return (
       <Background>
       <ScrollView>
       <Button onPress={() => navigation.toggleDrawer()}>
         Close
         </Button>
-        <Card title='HELLO WORLD'>
+        <Card title='Shane'>
+        <Switch style={{position: 'absolute', right: 0}}
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      /> 
   <Text style={{marginBottom: 10}}>
     The idea with React Native Elements is more about component structure than actual design.
   </Text>
-  <Button
-    >VIEW NOW</Button>
+  <Text style={{marginBottom: 10, marginTop: 10, textAlign: "center"}}>
+  11 Sept 11 11 requests  11hour
+  </Text>
+  <Button mode="contained" onPress={() => navigation.navigate('CampaignDetail', { screen: 'CampaignDetail' })}
+    >Show</Button>
 </Card>
+
+<Card title='Shane'>
+        <Switch style={{position: 'absolute', right: 0}}
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isEnabled2 ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch2}
+        value={isEnabled2}
+      /> 
+  <Text style={{marginBottom: 10}}>
+    The idea with React Native Elements is more about component structure than actual design.
+  </Text>
+  <Text style={{marginBottom: 10, marginTop: 10, textAlign: "center"}}>
+  11 Sept 11 11 requests  11hour
+  </Text>
+  <Button
+    >Show</Button>
+</Card>
+
         </ScrollView>
         </Background>
     );
@@ -161,15 +195,25 @@ const Dashboard = ({ navigation }: Props) => {
   
   
   const Drawer = createDrawerNavigator();
+  const Stack = createStackNavigator();
+
+  const CampaignsSub = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="CampaignDetail" component={CampaignDetail} />
+      </Stack.Navigator>
+    );
+  }
   
   const MyDrawer  = () => {
     return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="Dashboard" component={dashboardHome} />
-        <Drawer.Screen name="Subscription" component={Subscription} />
+        <Drawer.Screen name="Campaigns" component={Campaigns} />
       </Drawer.Navigator>
     );
   }
+
   return (
 
       <NavigationContainer>
