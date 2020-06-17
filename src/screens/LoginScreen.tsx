@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, ScrollView } from "react-native";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
 import Header from "../components/Header";
@@ -96,6 +96,11 @@ const LoginScreen = ({ navigation }: Props) => {
 
   return (
     <Background>
+       <ScrollView
+    contentContainerStyle={{
+      flex: 1,
+      justifyContent: 'space-between'
+  }}>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
       <Logo />
@@ -161,6 +166,7 @@ const LoginScreen = ({ navigation }: Props) => {
       </View>
 
       <Toast message={error} onDismiss={() => setError("")} />
+      </ScrollView>
     </Background>
   );
 };
