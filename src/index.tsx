@@ -7,8 +7,8 @@ import {
   ForgotPasswordScreen,
   AuthLoadingScreen,
   Dashboard,
+  CampaignDetail,
 } from "./screens";
-import CampaignDetail from './screens/CampaignDetail';
 
 const Router = createStackNavigator(
   {

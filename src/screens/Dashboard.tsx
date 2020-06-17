@@ -20,8 +20,7 @@ import {
 } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { Card } from 'react-native-elements';
-import CampaignDetail from "./CampaignDetail";
-import { createStackNavigator } from '@react-navigation/stack';
+import Header from "../components/Header";
 
 
 
@@ -36,11 +35,28 @@ const Dashboard = ({ navigation }: Props) => {
 
   const dashboardHome = ({ navigation }) => {
     return (
-      <Background>
-      <ScrollView>
-      <Button onPress={() => navigation.toggleDrawer()}>
-        Close
+
+      
+      
+      <Background >
+     
+      <div style={{ width: 'calc(100% + 40px)',flex: 1, margin: '-20px 0 10px',boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)',backgroundColor: 'white'}}>
+      <Button mode="contained" onPress={() => navigation.toggleDrawer()} style={{display: 'inline-flex', width:'calc(40% - 35px) ',marginLeft: '20px',marginRight: '15px'}}> 
+        Sidebar
         </Button>
+       
+        <Text style={{display:'inline-flex',textAlign:'center',width:'25%',marginRight: '15px'}} >Dashboard</Text>
+        
+
+        <Button mode="outlined" onPress={() => logoutUser()} style={{display:'inline-flex', width: 'cal(40% - 35px)',marginRight: '20px'}}>
+          Logout
+        </Button> 
+
+        </div>
+
+
+      <ScrollView>
+      
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
          {/* <Logo /> */}
 <View style={styles.mt20}>
@@ -119,9 +135,7 @@ const Dashboard = ({ navigation }: Props) => {
       Your amazing app starts here. Open you favourite code editor and start
       editing this project.
     </Paragraph>
-    <Button mode="outlined" onPress={() => logoutUser()}>
-      Logout
-    </Button> 
+    
       </View>
       </ScrollView>
       </Background>
@@ -195,15 +209,6 @@ const Dashboard = ({ navigation }: Props) => {
   
   
   const Drawer = createDrawerNavigator();
-  const Stack = createStackNavigator();
-
-  const CampaignsSub = () => {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen name="CampaignDetail" component={CampaignDetail} />
-      </Stack.Navigator>
-    );
-  }
   
   const MyDrawer  = () => {
     return (
