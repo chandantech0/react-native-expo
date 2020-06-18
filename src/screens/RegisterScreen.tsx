@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
 import Header from "../components/Header";
@@ -58,6 +58,7 @@ const RegisterScreen = ({ navigation }: Props) => {
 
   return (
     <Background>
+       <ScrollView style={{width: '100%'}}>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
       <Logo />
@@ -114,6 +115,7 @@ const RegisterScreen = ({ navigation }: Props) => {
       </View>
 
       <Toast message={error} onDismiss={() => setError("")} />
+      </ScrollView>
     </Background>
   );
 };

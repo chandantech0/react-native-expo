@@ -96,11 +96,7 @@ const LoginScreen = ({ navigation }: Props) => {
 
   return (
     <Background>
-       <ScrollView
-    contentContainerStyle={{
-      flex: 1,
-      justifyContent: 'space-between'
-  }}>
+       <ScrollView style={{width: '100%'}}>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
       <Logo />
@@ -143,15 +139,15 @@ const LoginScreen = ({ navigation }: Props) => {
         Login
       </Button>
 
-      <Button  onPress={_onFacebokLoginPressed}>
+      <Button mode="outlined" onPress={_onFacebokLoginPressed}>
         Facebook Login
       </Button>
 
-      <Button  onPress={_onGoogleLoginPressed}>
+      <Button mode="outlined" onPress={_onGoogleLoginPressed}>
         Google Login
       </Button>
 
-      <Button  onPress={_onTwitterLoginPressed}>
+      <Button mode="outlined" onPress={_onTwitterLoginPressed}>
         Twitter Login
       </Button>
       
